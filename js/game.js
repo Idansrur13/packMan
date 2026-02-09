@@ -6,6 +6,10 @@ const SUPERFOOD = '&#10022;'
 const SUPERGHOSTCOLOR = '#82ff72ff'
 const CHERRY = '🍒'
 const EMPTY = ' '
+const audioFight = new Audio('audio/fright.wav')
+const audioDeath = new Audio('audio/death_0.wav')
+const audioEatDot = new Audio('audio/eat_dot_1.wav')
+const audioEatGhost = new Audio('audio/eat_ghost.wav')
 
 const gGame = {
   score: 0,
@@ -52,6 +56,7 @@ function buildBoard() {
       }
     }
   }
+
   board[1][1] = SUPERFOOD
   board[8][8] = SUPERFOOD
   board[8][1] = SUPERFOOD
@@ -95,6 +100,7 @@ function addCherry() {
 }
 
 function eatSuperGhost(nextPos) {
+  audioEatGhost.play()
   for (let i = 0; i < gGhosts.length; i++) {
     const ghost = gGhosts[i]
     if (ghost.pos.i === nextPos.i && ghost.pos.j === nextPos.j) {
@@ -114,6 +120,7 @@ function gameOver() {
   console.log('Game Over')
   gGame.isOn = false
   btnOver.style.display = 'block'
+  audioDeath.play()
 }
 
 function counterFood() {

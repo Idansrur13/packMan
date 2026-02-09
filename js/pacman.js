@@ -34,9 +34,17 @@ function movePacman(ev) {
   }
 
   // TODO: hitting food? call updateScore
-  if (nextCell === FOOD) updateScore(1)
-  if (nextCell === CHERRY) updateScore(10)
-  if (nextCell === SUPERFOOD && !isSuperGhost) superFood()
+  if (nextCell === FOOD) {
+    audioEatDot.play()
+    updateScore(1)
+  }
+  if (nextCell === CHERRY) {
+    updateScore(10)
+  }
+  if (nextCell === SUPERFOOD && !isSuperGhost) {
+    superFood()
+    audioFight.play()
+  }
 
   // TODO: moving from current pos:
   // TODO: update the model
