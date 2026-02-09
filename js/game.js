@@ -17,6 +17,7 @@ var countFood
 function init() {
   const btnOver = document.querySelector('.gameOver')
   countFood = 0
+  isSuperGhost = false
   gGhosts = []
 
   gBoard = buildBoard()

@@ -2,7 +2,7 @@
 
 const GHOST = '&#9865;'
 var gGhosts = []
-var isSuperGhost = true
+var isSuperGhost = false
 
 var gGhostsInterval
 
@@ -50,6 +50,13 @@ function moveGhost(ghost) {
   // TODO: hitting a pacman? call gameOver
   if (nextCell === PACMAN && !isSuperGhost) {
     gameOver()
+    return
+  } else if (nextCell === PACMAN && isSuperGhost) {
+    eatSuperGhost(nextPos)
+    gBoard[ghost.pos.i][ghost.pos.j] = PACMAN
+    renderCell(ghost.pos, PACMAN)
+    gBoard[ghost.pos.i][ghost.pos.j] = PACMAN
+    console.log(gBoard[ghost.pos.i][ghost.pos.j])
     return
   }
 
